@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import GSignInButton from 'vue-google-signin-button'
 import wysiwyg from "vue-wysiwyg";
+import FormData from 'form-data'
 Vue.use(wysiwyg, {}); 
 Vue.use(GSignInButton)
 

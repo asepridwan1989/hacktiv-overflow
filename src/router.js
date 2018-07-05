@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Question from './views/Question.vue'
-import Answer from './components/Answer.vue'
+import Blog from './views/Blog.vue'
+import Detail from './components/Detail.vue'
 
 Vue.use(Router)
 
@@ -14,14 +14,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/question',
-      name: 'question',
-      component: Question
+      path: '/blog',
+      name: 'blog',
+      component: Blog
     },
     {
-      path: '/answer/:id',
-      name: 'answer',
-      component: Answer
+      path: '/post-detail/:id',
+      name: 'detail',
+      component: Detail
     }
   ]
 })

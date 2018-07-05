@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="margin-top:50px">
     <div style="text-align:center">
-      <h1 style="font-family: 'Shrikhand', cursive;">welcome to hacktiv-overflow app</h1>
+      <h1 style="font-family: 'Shrikhand', cursive;">welcome to blogger app</h1>
     </div>
     <br><br>
     <div class="container">
@@ -106,9 +106,9 @@ export default {
     }
   },
   created: function () {
-    let tokenStore = localStorage.getItem('oflow-token')
+    let tokenStore = localStorage.getItem('blog-token')
     if(tokenStore){
-      this.$router.push({'path' : '/question'})
+      this.$router.push({'path' : '/blog'})
     }
     (function (d, s, id) {
       var js
@@ -140,7 +140,7 @@ export default {
     statLog () {
       // this.status = this.$store.state.status
       if (this.statLog == true) {
-        this.$router.push({'path' : '/question'})
+        this.$router.push({'path' : '/blog'})
       }
     }
   },
@@ -155,10 +155,6 @@ export default {
     },
     onSignInSuccess (googleUser) {
       const profile = googleUser.getBasicProfile()
-      console.log('ID: ' + profile.getId())
-      console.log('Name: ' + profile.getName())
-      console.log('Image URL: ' + profile.getImageUrl())
-      console.log('Email: ' + profile.getEmail())
       let body = {
         name: profile.getName(),
         email: profile.getEmail(),
@@ -173,27 +169,20 @@ export default {
       this.$store.dispatch('signinSteam')               
     },
     login () {
-      console.log('loggin bosss')
       let body = {
         email: this.emailLog,
         password: this.passwordLog
       }
       this.$store.dispatch('signin', body)
       .then(()=>{
-        this.$router.push({'path' : '/question'})
+        this.$router.push({'path' : '/blog'})
       })
     },
     onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      var profile = googleUser.getBasicProfile()
     },
     loginfb () {
       window.FB.login((response) => {
-        console.log('statusChangeCallback')
-        console.log(response)
         if (response.status === 'connected') {
           this.testAPI(this.$store.dispatch)
         } else {
@@ -204,18 +193,15 @@ export default {
     loginGithub () {
       this.$store.dispatch('signinGithub')
       .then(()=>{
-        this.$router.push({'path' : '/question'})
+        this.$router.push({'path' : '/blog'})
       })
     },
     testAPI (cb) {
-      console.log('Welcome!  Fetching your information.... ')
       FB.api('/me', {fields: ['name','email','picture']}, function(response) {
-      // console.log('ini reposensnensne---' + JSON.stringify(response.picture.data.url))
       let idFB = response.id
       this.nameReg = response.name
       this.emailReg = `${idFB}@facebook.com`
       this. passwordReg = `${idFB}@facebook.com`
-      console.log(response)
       let body = {
         name: this.nameReg,
         email: this.emailReg,
